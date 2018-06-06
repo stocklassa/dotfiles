@@ -12,7 +12,7 @@ bindsym $mod+z exec setxkbmap -layout us
 bindsym $mod+y exec setxkbmap -layout de
 
 # start a terminal, love this hotkey
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec urxvt
 
 # kill focused window, also fine
 bindsym $mod+Shift+q kill

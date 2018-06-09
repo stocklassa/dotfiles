@@ -12,7 +12,8 @@ bindsym $mod+z exec setxkbmap -layout us
 bindsym $mod+y exec setxkbmap -layout de
 
 # start a terminal, love this hotkey
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec urxv
+bindsym $mod+c exec chromium-browser
 
 # kill focused window, also fine
 bindsym $mod+Shift+q kill

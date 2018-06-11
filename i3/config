@@ -150,9 +150,17 @@ bar {
     urgent_workspace   #20293A #20293A #FCF5C7
   }
 }
+
+# Trying out i3 without topbar
+# default_border none
+# I need to use the following line, because the Ubuntu i3 arrived to us from a timecapsule buried by
+# George Washington who in turn found it while excavating an ancient Maya pyramid
+new_window 1pixel
+
 # Machine-specific monitor assignment. Not happy about this. Need to find a way to make this portable.
 workspace 1 output DVI-D-1
 workspace 2 output DVI-I-1
 
 exec "setxkbmap -layout us -option caps:swapescape" 
 exec "xrandr --output DVI-D-1 --left-of DVI-I-1"
+exec "feh --bg-scale /home/eric/wallpaper.jpg"

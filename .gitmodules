@@ -37,3 +37,6 @@
 [submodule "vim/pack/plugins/start/phpactor"]
 	path = vim/pack/plugins/start/phpactor
 	url = https://github.com/phpactor/phpactor.git
+[submodule "vim/pack/plugins/start/php.vim"]
+	path = vim/pack/plugins/start/php.vim
+	url = https://github.com/StanAngeloff/php.vim.git

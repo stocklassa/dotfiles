@@ -33,3 +33,14 @@ nmap <Leader>cc :call phpactor#ClassNew()<CR>
 nmap <silent><Leader>ee :call phpactor#ExtractExpression(v:false)<CR>
 vmap <silent><Leader>ee :<C-U>call phpactor#ExtractExpression(v:true)<CR>
 vmap <silent><Leader>em :<C-U>call phpactor#ExtractMethod()<CR>
+
+"Vim-test
+let test#strategy = "dispatch"
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
+
+"Just for PHP
+nmap <silent> <F9> :TestSuite tests/<CR>

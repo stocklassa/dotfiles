@@ -52,3 +52,9 @@
 [submodule "vim/pack/plugins/start/emmet-vim"]
 	path = vim/pack/plugins/start/emmet-vim
 	url = https://github.com/mattn/emmet-vim.git
+[submodule "vim/pack/plugins/start/vim-test"]
+	path = vim/pack/plugins/start/vim-test
+	url = https://github.com/janko-m/vim-test.git
+[submodule "vim/pack/plugins/start/vim-dispatch"]
+	path = vim/pack/plugins/start/vim-dispatch
+	url = https://github.com/tpope/vim-dispatch.git

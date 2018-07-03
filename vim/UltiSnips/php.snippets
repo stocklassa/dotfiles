@@ -1,0 +1,20 @@
+snippet example
+Hello World!
+
+endsnippet
+
+snippet putest "PHPUnit / Test Case" b
+<?php
+
+namespace `!v substitute(substitute(substitute(expand("%:p"), '\v(.*\/\U+)((\/\w+)+)\/\w+.php$', '\2', ''), '\/', '\\', 'g'), '\\', '', '')`;
+
+use PHPUnit\Framework\TestCase;
+
+/**
+ * Class: `!p snip.rv = snip.basename or "ClassName"`
+ */
+class `!p snip.rv = snip.basename or "ClassName"` extends TestCase
+{
+	${0}
+}
+endsnippet

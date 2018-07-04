@@ -18,3 +18,6 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+
+# OMG, KILL IT WITH FIRE
+unsetopt AUTO_CD

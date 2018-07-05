@@ -23,6 +23,9 @@ set wildmenu
 "Slant made me set my leader key to Space! Is that... wise?
 let mapleader = " "
 
+"For modifiying my .vimrc a lot
+nmap <Leader>v :source $MYVIMRC<CR>
+
 "Mappings for phpactor
 nmap <Leader>mm :call phpactor#ContextMenu()<CR>
 nmap <Leader>o :call phpactor#GotoDefinition()<CR>
@@ -44,3 +47,6 @@ nmap <silent> <leader>g :TestVisit<CR>
 
 "Just for PHP
 nmap <silent> <F9> :TestSuite tests/<CR>
+
+"git with fugitive
+nmap <Leader>gs :Gstatus<CR>

@@ -7,6 +7,7 @@ ZSH_THEME="robbyrussell"
 
 plugins=(
   git
+  gitignore
   fancy-ctrl-z
   common-aliases
   composer

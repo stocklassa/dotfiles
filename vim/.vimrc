@@ -39,11 +39,11 @@ vmap <silent><Leader>em :<C-U>call phpactor#ExtractMethod()<CR>
 
 "Vim-test
 let test#strategy = "dispatch"
-nmap <silent> <leader>t :TestNearest<CR>
-nmap <silent> <leader>T :TestFile<CR>
-nmap <silent> <leader>a :TestSuite<CR>
-nmap <silent> <leader>l :TestLast<CR>
-nmap <silent> <leader>g :TestVisit<CR>
+nmap <silent> <Leader>t :TestNearest<CR>
+nmap <silent> <Leader>T :TestFile<CR>
+nmap <silent> <Leader>a :TestSuite<CR>
+nmap <silent> <Leader>l :TestLast<CR>
+nmap <silent> <Leader>g :TestVisit<CR>
 
 "Just for PHP
 nmap <silent> <F9> :TestSuite tests/<CR>

@@ -50,3 +50,6 @@ nmap <silent> <F9> :TestSuite tests/<CR>
 
 "git with fugitive
 nmap <Leader>gs :Gstatus<CR>
+
+"reverse selection
+vmap <Leader>fR c<C-O>:set ri<CR><C-R>"<Esc>:set nori<CR>

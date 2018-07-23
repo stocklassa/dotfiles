@@ -53,3 +53,5 @@ nmap <Leader>gs :Gstatus<CR>
 
 "reverse selection
 vmap <Leader>fR c<C-O>:set ri<CR><C-R>"<Esc>:set nori<CR>
+
+let g:user_emmet_leader_key = '<C-y>'

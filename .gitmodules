@@ -61,3 +61,6 @@
 [submodule "vim/pack/plugins/start/vim-togglelist"]
 	path = vim/pack/plugins/start/vim-togglelist
 	url = https://github.com/milkypostman/vim-togglelist.git
+[submodule "vim/pack/plugins/start/vim-ultisnips-react"]
+	path = vim/pack/plugins/start/vim-ultisnips-react
+	url = https://github.com/alexbyk/vim-ultisnips-react.git

@@ -11,9 +11,13 @@ floating_modifier $mod
 bindsym $mod+z exec setxkbmap -layout us
 bindsym $mod+y exec setxkbmap -layout de
 
+# $mod+g to get all the relevant feeds
+bindsym $mod+g exec slack && thunderbird
+
 # start a terminal, love this hotkey
 bindsym $mod+Return exec urxvt
 bindsym $mod+c exec chromium-browser
+bindsym $mod+o exec firefox -new-window https://mayflower.workpath.com
 
 # kill focused window, also fine
 bindsym $mod+Shift+q kill
@@ -158,9 +162,10 @@ bar {
 new_window 1pixel
 
 # Machine-specific monitor assignment. Not happy about this. Need to find a way to make this portable.
-workspace 1 output DVI-D-1
-workspace 2 output DVI-I-1
+# workspace 1 output DVI-D-1
+# workspace 2 output DVI-I-1
 
 exec "setxkbmap -layout us -option caps:swapescape" 
 exec "xrandr --output DVI-D-1 --left-of DVI-I-1"
 exec "feh --bg-scale /home/eric/wallpaper.jpg"
+exec --no-startup-id i3-msg 'workspace 9; exec slack; exec thunderbird; workspace 1' 

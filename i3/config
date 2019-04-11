@@ -7,6 +7,17 @@ font pango:DejaVu Sans Mono 8
 # Supposedly a mouse modifier to float-drag windows. Hasn't worked for me so far
 floating_modifier $mod
 
+# Detect screens and set them up
+bindsym $mod+x exec xrandr --auto
+bindsym $mod+shift+x exec xrandr --output eDP-1 --right-of HDMI-1
+
+# Volume control
+bindsym $mod+b exec --no-startup-id pactl set-sink-volume 0 +5%
+bindsym $mod+Shift+b exec --no-startup-id pactl set-sink-volume 0 -5%
+
+# Screenshots
+bindsym Control+Print exec gnome-screenshot -i
+
 # $mod+y switches to keyboard layout de, $mod+z to us. See what I did there? :D
 bindsym $mod+z exec setxkbmap -layout us
 bindsym $mod+y exec setxkbmap -layout de
@@ -24,6 +35,7 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher), works fine
 bindsym $mod+d exec dmenu_run
+bindsym $mod+Shift+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus, changed this to vim-like movements
 bindsym $mod+h focus left

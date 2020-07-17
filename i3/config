@@ -10,13 +10,14 @@ floating_modifier $mod
 # Detect screens and set them up
 bindsym $mod+x exec xrandr --auto
 bindsym $mod+shift+x exec xrandr --output eDP-1 --right-of HDMI-1
+bindsym $mod+ctrl+x exec xrandr --output eDP-1 --same-as HDMI-1
 
 # Volume control
 bindsym $mod+b exec --no-startup-id pactl set-sink-volume 0 +5%
 bindsym $mod+Shift+b exec --no-startup-id pactl set-sink-volume 0 -5%
 
 # Screenshots
-bindsym Control+Print exec gnome-screenshot -i
+bindsym $mod+Print exec gnome-screenshot -i
 
 # $mod+y switches to keyboard layout de, $mod+z to us. See what I did there? :D
 bindsym $mod+z exec setxkbmap -layout us
@@ -24,6 +25,9 @@ bindsym $mod+y exec setxkbmap -layout de
 
 # $mod+g to get all the relevant feeds
 bindsym $mod+g exec slack && thunderbird
+
+# $mod+shift+t to get the monster workshop
+bindsym $mod+Shift+t exec evince D\&D/Core/Dungeon\ Master\'s\ Guide.pdf &&  evince D\&D/Core/Monster\ Manual.pdf
 
 # start a terminal, love this hotkey
 bindsym $mod+Return exec urxvt

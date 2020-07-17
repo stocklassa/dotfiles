@@ -10,6 +10,9 @@ set nocompatible
 "Proper Backspace behavior
 set backspace=2
 
+"Modelines are historically insecure
+set nomodeline
+
 syntax enable
 filetype plugin on
 filetype indent on
@@ -37,6 +40,9 @@ nmap <silent><Leader>ee :call phpactor#ExtractExpression(v:false)<CR>
 vmap <silent><Leader>ee :<C-U>call phpactor#ExtractExpression(v:true)<CR>
 vmap <silent><Leader>em :<C-U>call phpactor#ExtractMethod()<CR>
 
+"Give me NERDTree!
+nmap <Leader>N :NERDTree<CR>
+
 "Vim-test
 let test#strategy = "dispatch"
 nmap <silent> <Leader>t :TestNearest<CR>
@@ -45,8 +51,8 @@ nmap <silent> <Leader>a :TestSuite<CR>
 nmap <silent> <Leader>l :TestLast<CR>
 nmap <silent> <Leader>g :TestVisit<CR>
 
-"Just for PHP
-nmap <silent> <F9> :TestSuite tests/<CR>
+"Execute tests
+nmap <F9> :!clear<CR>:!rspec test/*<CR>
 
 "git with fugitive
 nmap <Leader>gs :Gstatus<CR>
@@ -55,3 +61,10 @@ nmap <Leader>gs :Gstatus<CR>
 vmap <Leader>fR c<C-O>:set ri<CR><C-R>"<Esc>:set nori<CR>
 
 let g:user_emmet_leader_key = '<C-y>'
+set backupcopy=yes
+autocmd BufNewFile,BufRead *.twig set syntax=html
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+

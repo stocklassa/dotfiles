@@ -1,0 +1,208 @@
+priority 80
+
+snippet ri2 "Import React, Component and PropTypes" b
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+endsnippet
+
+snippet ri1 "just import React" b
+import React from 'react'
+endsnippet
+
+snippet rid "import ReactDOM" b
+import ReactDOM from 'react-dom'
+endsnippet
+
+snippet rt "React Test" b
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ${1} from './$1';
+
+it('renders without crashing', () => {
+  const div = document.createElement('div');
+  ReactDOM.render(<$1 />, div);
+  ReactDOM.unmountComponentAtNode(div);
+});
+endsnippet
+
+snippet rc "React Component" b
+import React, { Component } from 'react';
+
+class ${1} extends Component {
+  render() {
+    return (
+      <div className="$1">
+        ${2}
+      </div>
+    );
+  }
+}
+
+export default $1;
+endsnippet
+
+snippet rfc "React Functional Component" b
+import React from 'react'
+
+export const ${1} = () => {
+	<div>
+		${2}
+	</div>
+}
+
+export default $1
+endsnippet
+
+snippet imp "Import React Component" b
+import { ${1} } from './$1';
+endsnippet
+
+snippet cdm
+	componentDidMount() {
+		${1}
+	}
+endsnippet
+
+snippet cdup
+	componentDidUpdate(prevProps, prevState) {
+		${1}
+	}
+endsnippet
+
+snippet cwm
+	componentWillMount() {
+		${1}
+	}
+endsnippet
+
+snippet cwr
+	componentWillReceiveProps(nextProps) {
+		${1}
+	}
+endsnippet
+
+snippet cwun
+	componentWillUnmount() {
+		${1}
+	}
+endsnippet
+
+snippet cwu
+	componentWillUpdate(nextProps, nextState) {
+		${1}
+	}
+endsnippet
+
+snippet rcc
+	class ${1:ClassName} extends React.Component {
+		render() {
+			return (
+				${0:<div />}
+			);
+		}
+	}
+endsnippet
+
+snippet ctor
+	constructor() {
+		super();
+		${1}
+	}
+endsnippet
+
+snippet rcon
+	constructor(props) {
+		super(props)
+
+		this.state = {
+			${1}: ${0},
+		}
+	}
+endsnippet
+
+snippet ren
+	render() {
+		return (
+			${1:<div />}
+		);
+	}
+endsnippet
+
+snippet sst
+	this.setState({
+		${1}: ${2}
+	});
+endsnippet
+
+snippet rcdp
+	static defaultProps = {
+		${1}: ${0},
+	}
+endsnippet
+
+## PropTypes
+#snippet pt "PropTypes Definition" b
+#${1:`!v expand('%:t:r')`.}propTypes = {
+#${2:className}: ${3:PropTypes.string},
+#};
+#endsnippet
+#
+#snippet  pt.a "PropTypes Array" w
+#PropTypes.array${1:,}
+#endsnippet
+#
+#snippet   pt.b "PropTypes Boolean" w
+#PropTypes.bool${1:,}
+#endsnippet
+#
+#snippet pt.f "PropTypes Function" w
+#PropTypes.func${1:,}
+#endsnippet
+#
+#snippet pt.n "PropTypes Number" w
+#PropTypes.number${1:,}
+#endsnippet
+#
+#snippet pt.o "PropTypes Object" w
+#PropTypes.object${1:,}
+#endsnippet
+#
+#snippet pt.s "PropType String" w
+#PropTypes.string${1:,}
+#endsnippet
+#
+#snippet pt.no "PropTypes Node" w
+#PropTypes.node${1:,}
+#endsnippet
+#
+#snippet pt.e "PropTypes Element" w
+#PropTypes.element${1:,}
+#endsnippet
+#
+#snippet pt.io "PropTypes instanceOf" w
+#PropTypes.instanceOf(${2:PropTypes.string})${1:,}
+#endsnippet
+#
+#snippet pt.one "PropTypes oneOf" w
+#PropTypes.oneOf(['$2'$3])${1:,}
+#endsnippet
+#
+#snippet pt.onet "PropTypes oneOfType" w
+#PropTypes.oneOfType([
+#$2
+#])${1:,}
+#endsnippet
+#
+#snippet pt.ao "PropTypes arrayOf" w
+#PropTypes.arrayOf(${2:PropTypes.string})${1:,}
+#endsnippet
+#
+#snippet pt.oo "PropTypes objectOf" w
+#PropTypes.objectOf(${2:PropTypes.string})${1:,}
+#endsnippet
+#
+#snippet pt.sh "PropTyes Shape" w
+#PropTypes.shape({
+	#$2
+#})${1:,}
+#endsnippet

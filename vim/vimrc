@@ -1,3 +1,12 @@
+"Apparently this is basic:
+set number
+syntax on
+syntax enable
+filetype plugin on
+filetype plugin indent on
+filetype on
+filetype indent on
+
 "Where am I?
 set ruler
 
@@ -13,10 +22,6 @@ set backspace=2
 "Modelines are historically insecure
 set nomodeline
 
-syntax enable
-filetype plugin on
-filetype indent on
-
 set t_Co=256
 
 set path+=**
@@ -28,17 +33,7 @@ let mapleader = " "
 
 "For modifiying my .vimrc a lot
 nmap <Leader>v :source $MYVIMRC<CR>
-
-"Mappings for phpactor
-nmap <Leader>mm :call phpactor#ContextMenu()<CR>
-nmap <Leader>o :call phpactor#GotoDefinition()<CR>
-nmap <Leader>u :call phpactor#UseAdd()<CR>
-nmap <Leader>nn :call phpactor#Navigate()<CR>
-nmap <Leader>tt :call phpactor#Transform()<CR>
-nmap <Leader>cc :call phpactor#ClassNew()<CR>
-nmap <silent><Leader>ee :call phpactor#ExtractExpression(v:false)<CR>
-vmap <silent><Leader>ee :<C-U>call phpactor#ExtractExpression(v:true)<CR>
-vmap <silent><Leader>em :<C-U>call phpactor#ExtractMethod()<CR>
+nmap <Leader>V :e ~/.vim/vimrc<CR>
 
 "Give me NERDTree!
 nmap <Leader>N :NERDTree<CR>
@@ -52,7 +47,7 @@ nmap <silent> <Leader>l :TestLast<CR>
 nmap <silent> <Leader>g :TestVisit<CR>
 
 "Execute tests
-nmap <F9> :!clear<CR>:!rspec test/*<CR>
+nmap <F9> :!clear<CR>:!rails test<CR>
 
 "git with fugitive
 nmap <Leader>gs :Gstatus<CR>
@@ -68,3 +63,26 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
+"Insert timestamp
+nmap <Leader>d :put =strftime('%c')<CR>
+
+
+nmap <Leader>irb :!clear<CR>:!irb<CR>
+nmap <Leader>rcw :!ruby -cw %<CR>
+nmap <Leader>esc :!/usr/bin/setxkbmap -option "caps:swapescape"<CR>
+
+nmap <Leader>f :FZF<CR>
+nmap <F12> :!ruby %<CR>
+
+nmap <Leader>w :e ~/notes/technomancy.md<CR>
+nmap <Leader>e :e ~/notes/wtf.md<CR>
+nmap <Leader>r :e ~/notes/ricing.md<CR>
+
+nmap <Leader>1 iThis is Hotkey number ONE!!<CR><ESC>
+nmap <Leader><F4> iThis works.<CR><ESC>
+nmap <Leader>Tt iThis works.<CR><ESC>
+
+
+
+autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
+autocmd FileType eruby setlocal expandtab shiftwidth=2 tabstop=2

@@ -2,10 +2,29 @@
 set number
 syntax on
 syntax enable
+
 filetype plugin on
 filetype plugin indent on
 filetype on
 filetype indent on
+
+"Plugins
+""emmet-vim
+"fzf
+"nerdtree
+"vim-abolish
+"vim-airline
+"vim-commentary
+"vim-dispatch
+"vim-eunuch
+"vim-fugitive
+"vim-repeat
+"vim-sleuth
+"vim-speeddating
+"vim-surround
+"vim-test
+"vim-togglelist
+"vim-unimpaired
 
 "Where am I?
 set ruler
@@ -36,7 +55,7 @@ nmap <Leader>v :source $MYVIMRC<CR>
 nmap <Leader>V :e ~/.vim/vimrc<CR>
 
 "Give me NERDTree!
-nmap <Leader>N :NERDTree<CR>
+nmap <Leader>N :NERDTreeFind<CR>
 
 "Vim-test
 let test#strategy = "dispatch"
@@ -47,10 +66,7 @@ nmap <silent> <Leader>l :TestLast<CR>
 nmap <silent> <Leader>g :TestVisit<CR>
 
 "Execute tests
-nmap <F9> :!clear<CR>:!rails test<CR>
-
-"git with fugitive
-nmap <Leader>gs :Gstatus<CR>
+nmap <F9> :!clear<CR>:!rspec<CR>
 
 "reverse selection
 vmap <Leader>fR c<C-O>:set ri<CR><C-R>"<Esc>:set nori<CR>
@@ -72,9 +88,9 @@ nmap <Leader>rcw :!ruby -cw %<CR>
 nmap <Leader>esc :!/usr/bin/setxkbmap -option "caps:swapescape"<CR>
 
 nmap <Leader>f :FZF<CR>
-nmap <F12> :!ruby %<CR>
+nmap <F12> :!./bin/rspec %<CR>
 
-nmap <Leader>w :e ~/notes/technomancy.md<CR>
+nmap <Leader>w :e ~/notes/Poorhammer\ Channel/intro.md<CR>
 nmap <Leader>e :e ~/notes/wtf.md<CR>
 nmap <Leader>r :e ~/notes/ricing.md<CR>
 
@@ -82,7 +98,26 @@ nmap <Leader>1 iThis is Hotkey number ONE!!<CR><ESC>
 nmap <Leader><F4> iThis works.<CR><ESC>
 nmap <Leader>Tt iThis works.<CR><ESC>
 
+"Designing my own filetype is hard okay?
+nmap <Leader>md :set filetype=markdown<CR>
 
+nmap <Leader>G :!tig blame %<CR>
+
+
+nmap <Leader>ge :!cd gevos && make local-consumer<CR>
+nmap <Leader>psql :!cd ~/xempus/gevos && docker-compose exec db sh -c "PGPASSWORD=xbav psql -U xbav gevos_dev"<CR>
 
 autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
 autocmd FileType eruby setlocal expandtab shiftwidth=2 tabstop=2
+nmap <Leader>k :%s/\s*exit 1 ; \\\n//g<CR>
+nmap <Leader>a :Ag<CR>
+nmap <Leader>s :shell<CR>
+nmap <Leader>rn :call RunNearestSpec()<CR>
+nmap <Leader>rf :call RunCurrentSpecFile()<CR>
+
+nmap <Leader>bd :bp<bar>sp<bar>bn<bar>bd<CR>
+
+"nmap <Leader>B :!git add *; git commit -am "Backup"; git push<CR>
+nmap <Leader>B :Buffers<CR>
+nmap <Leader>C :CocDisable<CR>
+nmap <Leader>R :!bin/rspec %<CR>

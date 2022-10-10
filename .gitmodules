@@ -64,3 +64,6 @@
 [submodule "vim/pack/plugins/start/vim-react-snippets"]
 	path = vim/pack/plugins/start/vim-react-snippets
 	url = https://github.com/epilande/vim-react-snippets.git
+[submodule "vim/pack/plugins/start/the_silver_searcher"]
+	path = vim/pack/plugins/start/the_silver_searcher
+	url = https://github.com/ggreer/the_silver_searcher.git

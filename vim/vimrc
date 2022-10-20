@@ -1,30 +1,19 @@
+" Basic settings ---------------------------------------- {{{
 "Apparently this is basic:
 set number
 syntax on
 syntax enable
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
 
 filetype plugin on
 filetype plugin indent on
 filetype on
 filetype indent on
 
-"Plugins
-""emmet-vim
-"fzf
-"nerdtree
-"vim-abolish
-"vim-airline
-"vim-commentary
-"vim-dispatch
-"vim-eunuch
-"vim-fugitive
-"vim-repeat
-"vim-sleuth
-"vim-speeddating
-"vim-surround
-"vim-test
-"vim-togglelist
-"vim-unimpaired
+"setting up Ag for fuzzy fulltext searching
+let g:ackprg = 'ag --vimgrep'
 
 "Where am I?
 set ruler
@@ -47,77 +36,89 @@ set path+=**
 
 set wildmenu
 
+"Don't wrap lines in the middle of the word
+set linebreak
+
+" }}}
+
+" Mappings -------------------------------------------------------- {{{
 "Slant made me set my leader key to Space! Is that... wise?
 let mapleader = " "
 
 "For modifiying my .vimrc a lot
-nmap <Leader>v :source $MYVIMRC<CR>
-nmap <Leader>V :e ~/.vim/vimrc<CR>
+nnoremap <Leader>v :source $MYVIMRC<CR>
+nnoremap <Leader>V :e ~/.vim/vimrc<CR>
 
 "Give me NERDTree!
-nmap <Leader>N :NERDTreeFind<CR>
+nnoremap <Leader>N :NERDTreeFind<CR>
 
-"Vim-test
-let test#strategy = "dispatch"
-nmap <silent> <Leader>t :TestNearest<CR>
-nmap <silent> <Leader>T :TestFile<CR>
-nmap <silent> <Leader>a :TestSuite<CR>
-nmap <silent> <Leader>l :TestLast<CR>
-nmap <silent> <Leader>g :TestVisit<CR>
 
 "Execute tests
-nmap <F9> :!clear<CR>:!rspec<CR>
+nnoremap <F9> :!clear<CR>:!bin/rspec<CR>
 
 "reverse selection
-vmap <Leader>fR c<C-O>:set ri<CR><C-R>"<Esc>:set nori<CR>
+vnoremap <Leader>fR c<C-O>:set ri<CR><C-R>"<Esc>:set nori<CR>
 
 let g:user_emmet_leader_key = '<C-y>'
 set backupcopy=yes
-autocmd BufNewFile,BufRead *.twig set syntax=html
 
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 "Insert timestamp
-nmap <Leader>d :put =strftime('%c')<CR>
+nnoremap <Leader>d :put =strftime('%c')<CR>
 
 
-nmap <Leader>irb :!clear<CR>:!irb<CR>
-nmap <Leader>rcw :!ruby -cw %<CR>
-nmap <Leader>esc :!/usr/bin/setxkbmap -option "caps:swapescape"<CR>
+nnoremap <Leader>irb :!clear<CR>:!irb<CR>
+nnoremap <Leader>rcw :!ruby -cw %<CR>
+nnoremap <Leader>esc :!/usr/bin/setxkbnoremap -option "caps:swapescape"<CR>
 
-nmap <Leader>f :FZF<CR>
-nmap <F12> :!./bin/rspec %<CR>
-
-nmap <Leader>w :e ~/notes/Poorhammer\ Channel/intro.md<CR>
-nmap <Leader>e :e ~/notes/wtf.md<CR>
-nmap <Leader>r :e ~/notes/ricing.md<CR>
-
-nmap <Leader>1 iThis is Hotkey number ONE!!<CR><ESC>
-nmap <Leader><F4> iThis works.<CR><ESC>
-nmap <Leader>Tt iThis works.<CR><ESC>
+nnoremap <Leader>f :FZF<CR>
+nnoremap <F12> :!./bin/rspec %<CR>
 
 "Designing my own filetype is hard okay?
-nmap <Leader>md :set filetype=markdown<CR>
+nnoremap <Leader>md :set filetype=markdown<CR>
 
-nmap <Leader>G :!tig blame %<CR>
+nnoremap <Leader>G :!tig blame %<CR>
 
 
-nmap <Leader>ge :!cd gevos && make local-consumer<CR>
-nmap <Leader>psql :!cd ~/xempus/gevos && docker-compose exec db sh -c "PGPASSWORD=xbav psql -U xbav gevos_dev"<CR>
+nnoremap <Leader>k :%s/\s*exit 1 ; \\\n//g<CR>
+nnoremap <Leader>a :Ag<CR>
+nnoremap <Leader>s :shell<CR>
+nnoremap <Leader>rn :call RunNearestSpec()<CR>
+nnoremap <Leader>rf :call RunCurrentSpecFile()<CR>
 
-autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
-autocmd FileType eruby setlocal expandtab shiftwidth=2 tabstop=2
-nmap <Leader>k :%s/\s*exit 1 ; \\\n//g<CR>
-nmap <Leader>a :Ag<CR>
-nmap <Leader>s :shell<CR>
-nmap <Leader>rn :call RunNearestSpec()<CR>
-nmap <Leader>rf :call RunCurrentSpecFile()<CR>
+nnoremap <Leader>bd :bp<bar>sp<bar>bn<bar>bd<CR>
 
-nmap <Leader>bd :bp<bar>sp<bar>bn<bar>bd<CR>
+"nnoremap <Leader>B :!git add *; git commit -am "Backup"; git push<CR>
+nnoremap <Leader>B :Buffers<CR>
+nnoremap <Leader>C :CocDisable<CR>
+nnoremap <Leader>R :!bin/rspec %<CR>
+nnoremap <Leader>GB :!git add -A; git commit -am "Backup"; git push<CR>
+inoremap <c-u> <esc>gUiwea
+iabbrev mfg Mit freundlichen Grüßen,<CR>Eric Stocklassa
 
-"nmap <Leader>B :!git add *; git commit -am "Backup"; git push<CR>
-nmap <Leader>B :Buffers<CR>
-nmap <Leader>C :CocDisable<CR>
-nmap <Leader>R :!bin/rspec %<CR>
+" }}}
+
+" File type settings ------------------------------- {{{
+augroup rubythings
+	autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
+	autocmd FileType eruby setlocal expandtab shiftwidth=2 tabstop=2
+	"autocmd FileType ruby nnoremap <buffer> <localleader>c I #<esc>
+	autocmd filetype ruby        nnoremap <buffer> <localleader>c I #<esc>
+	"What is the best way to get rid of the space?
+	"autocmd filetype ruby	iabbrev <buffer> it it '' do<CR>end<UP><RIGHT>
+augroup END
+
+augroup twigthings
+	autocmd BufNewFile,BufRead *.twig set syntax=html
+augroup END
+
+" Vimscript file settings --------------------- {{{
+augroup filetype_vim
+	autocmd!
+	autocmd FileType vim setlocal foldmethod=marker
+augroup END
+" }}}
+" }}}

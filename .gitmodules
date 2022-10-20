@@ -67,3 +67,9 @@
 [submodule "vim/pack/plugins/start/the_silver_searcher"]
 	path = vim/pack/plugins/start/the_silver_searcher
 	url = https://github.com/ggreer/the_silver_searcher.git
+[submodule "vim/pack/plugins/start/ack.vim"]
+	path = vim/pack/plugins/start/ack.vim
+	url = https://github.com/mileszs/ack.vim.git
+[submodule "vim/pack/plugins/start/fzf.vim"]
+	path = vim/pack/plugins/start/fzf.vim
+	url = https://github.com/junegunn/fzf.vim.git

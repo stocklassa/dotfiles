@@ -15,6 +15,8 @@ bindsym $mod+ctrl+x exec xrandr --output eDP-1 --same-as HDMI-1
 # Volume control
 bindsym $mod+b exec --no-startup-id pactl set-sink-volume 0 +5%
 bindsym $mod+Shift+b exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume `pactl get-default-sink` +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume `pactl get-default-sink` -5%
 
 # Screenshots
 bindsym $mod+Print exec gnome-screenshot -i
@@ -30,7 +32,7 @@ bindsym $mod+g exec slack && thunderbird
 bindsym $mod+Shift+t exec evince D\&D/Core/Dungeon\ Master\'s\ Guide.pdf &&  evince D\&D/Core/Monster\ Manual.pdf
 
 # start a terminal, love this hotkey
-bindsym $mod+Return exec urxvt -lsp 1
+bindsym $mod+Return exec alacritty
 bindsym $mod+c exec chromium-browser
 bindsym $mod+o exec firefox -new-window https://mayflower.workpath.com
 
@@ -181,7 +183,7 @@ new_window 1pixel
 # workspace 1 output DVI-D-1
 # workspace 2 output DVI-I-1
 
-exec "setxkbmap -layout us -option caps:swapescape" 
-exec "xrandr --output DVI-D-1 --left-of DVI-I-1"
+exec "setxkbmap -layout us" 
+#-option caps:swapescape" 
+exec "xrandr --auto -o left --output HDMI-1 --right-of eDP-1"
 exec "feh --bg-scale /home/eric/wallpaper.jpg"
-exec --no-startup-id i3-msg 'workspace 9; exec slack; exec thunderbird; workspace 1' 

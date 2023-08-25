@@ -7,6 +7,8 @@ set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
 
+let g:python3_host_prog='/usr/bin/python3'
+
 filetype plugin on
 filetype plugin indent on
 filetype on
@@ -38,6 +40,12 @@ set wildmenu
 
 "Don't wrap lines in the middle of the word
 set linebreak
+
+set incsearch
+set hlsearch
+
+let g:vimwiki_list = [{'path': '~/zettelkasten-notes/', 'syntax': 'markdown', 'ext': '.md'}]
+
 
 " }}}
 
@@ -81,6 +89,7 @@ nnoremap <F12> :!./bin/rspec %<CR>
 nnoremap <Leader>md :set filetype=markdown<CR>
 
 nnoremap <Leader>G :!tig blame %<CR>
+nnoremap <Leader>T :!docker compose exec php composer run phpunit<CR>
 
 
 nnoremap <Leader>k :%s/\s*exit 1 ; \\\n//g<CR>
@@ -96,8 +105,21 @@ nnoremap <Leader>B :Buffers<CR>
 nnoremap <Leader>C :CocDisable<CR>
 nnoremap <Leader>R :!bin/rspec %<CR>
 nnoremap <Leader>GB :!git add -A; git commit -am "Backup"; git push<CR>
+nnoremap <Leader>cb o```<CR>```<ESC>ko
+nnoremap <Leader>cl I``<ESC>A``<ESC>
 inoremap <c-u> <esc>gUiwea
 iabbrev mfg Mit freundlichen Grüßen,<CR>Eric Stocklassa
+nnoremap <Leader>w :match Error /\s\+/<CR>
+nnoremap <Leader>W :match<CR>
+
+"flashcards
+"wrap word/visual selection in Cloze
+nnoremap <Leader>c viwo<ESC>i<b>{{c1::<ESC>ea::term}}</b><ESC>Ft
+vnoremap <Leader>c <ESC>`<i<i>{{c1::<ESC>`>9la::term}}</i><ESC>Ft
+nnoremap <Leader>j $a<br><ESC>Jx
+nnoremap <Leader>J T:v$<ESC>`<i<i>{{c2::<ESC>`>9la::enumeration}}</i><ESC>
+nnoremap <Leader>W :execute 'edit' "~/zettelkasten-notes/Work\ Log/Work\ Log\ ".strftime("%e.%m.%Y").".md"<CR>
+nnoremap <Leader>S ^i<b>{{c1::<ESC>$a::service}}</b><ESC>yyppkk^ A allow you to <ESC>jI<CR>Properties of <ESC>A:<CR>- property<CR>- property<CR>- property<CR><ESC>jA is recommended for:<CR>- use<CR>- use<CR>- use<ESC>10kA{{c2::service::answer}}<ESC>Fs;
 
 " }}}
 

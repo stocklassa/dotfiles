@@ -32,6 +32,8 @@ local plugins = {
 	{"tpope/vim-unimpaired"},
 	{"tpope/vim-fugitive"},
 	{"tpope/vim-surround"},
+	{"junegunn/goyo.vim"},
+	{"junegunn/limelight.vim"},
 	{"vim-airline/vim-airline"},
 	{
 		'VonHeikemen/lsp-zero.nvim',

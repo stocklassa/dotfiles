@@ -1,8 +1,4 @@
 vim.g.mapleader = " "
--- Both of those do NOT work
--- vim.keymap.set("n", "<leader>v", vim.cmd.so '/home/eric/.config/nvim/init.lua')
--- vim.keymap.set('n', '<leader>v', [[<cmd>luafile ~/.config/nvim/init.lua<CR>]], { noremap = true, silent = true })
-
 
 vim.keymap.set('n', '<Leader>VV', ':e /home/eric/dotfiles/nvim/lua/eric/remap.lua<CR>', { noremap = true, silent = false })
 vim.keymap.set('n', '<Leader>VP', ':e /home/eric/dotfiles/nvim/lua/plugins/init.lua<CR>', { noremap = true, silent = false })

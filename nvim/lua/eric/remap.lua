@@ -8,6 +8,7 @@ vim.keymap.set('n', '<Leader>s', ":term<CR>")
 vim.keymap.set('n', '<Leader>gs', ":Git<CR>")
 vim.keymap.set('n', '<Leader>q', ":e /home/eric/zettelkasten-notes/Plugins for Neovim.md<CR>")
 vim.keymap.set('n', '<leader>w', [[<Cmd>lua vim.cmd('vsp ' .. Get_work_log_path())<CR>]], { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>W', [[<Cmd>lua vim.cmd('e ' .. Get_work_log_path())<CR>]], { noremap = true, silent = true })
 
 vim.keymap.set('n', '<Leader>e', ":e /home/eric/zettelkasten-notes/Current Writing Project.md<CR>")
 

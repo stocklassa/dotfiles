@@ -34,6 +34,7 @@ local plugins = {
 	{"tpope/vim-unimpaired"},
 	{"tpope/vim-fugitive"},
 	{"tpope/vim-surround"},
+	{"nvim-tree/nvim-web-devicons"},
 	{
 		'morhetz/gruvbox',
 		config = function()
@@ -46,7 +47,9 @@ local plugins = {
 	},
 	{"junegunn/goyo.vim"},
 	{"junegunn/limelight.vim"},
-	{"vim-airline/vim-airline"},
+	{"nvim-lualine/lualine.nvim",
+dependencies = {{'nvim-tree/nvim-web-devicons'},},
+},
 	{
 		'VonHeikemen/lsp-zero.nvim',
 		branch = 'v2.x',
@@ -86,6 +89,12 @@ end)
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
 lsp.setup()
+
+require('lualine').setup {
+	options = {
+		theme = 'gruvbox',
+	}
+}
 
 require("flutter-tools").setup {}
 

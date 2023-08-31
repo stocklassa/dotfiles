@@ -77,16 +77,6 @@ require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
 lsp.setup()
 
--- require ("obsidian").setup {
--- 	dir = "~/zettelkasten-notes",
--- 	completion = {
--- 		nvim_cmp = true,
--- 		min_chars = 2,
--- 	},
--- 	mappings = {
--- 		["gf"] = require("obsidian.mapping").gf_passthrough(),
--- 	},
--- }
 require("flutter-tools").setup {}
 
 require("colorizer").setup()

@@ -1,0 +1,7 @@
+# Applications may change the title
+dynamic_title: true 
+history: 20000
+font:
+  normal:
+    family: JetBrainsMono NF
+  size: 7

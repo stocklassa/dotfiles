@@ -2,6 +2,7 @@ vim.g.mapleader = " "
 
 vim.keymap.set('n', '<Leader>VV', ':e /home/eric/dotfiles/nvim/lua/eric/remap.lua<CR>', { noremap = true, silent = false })
 vim.keymap.set('n', '<Leader>VP', ':e /home/eric/dotfiles/nvim/lua/plugins/init.lua<CR>', { noremap = true, silent = false })
+vim.keymap.set('n', '<Leader>v', '[[<Cmd>source /home/eric/dotfiles/nvim/lua/eric/remap.lua<CR>]]', { noremap = true, silent = false })
 vim.keymap.set('n', '<Leader>d', [[<Cmd>put =strftime('%c')<CR>]])
 vim.keymap.set('n', '<Leader>esc', [[<Cmd>!/usr/bin/setxkbmap -option "caps:swapescape"<CR>]])
 vim.keymap.set('n', '<Leader>s', ":term<CR>")

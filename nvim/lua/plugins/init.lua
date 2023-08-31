@@ -50,17 +50,6 @@ local plugins = {
 			{'L3MON4D3/LuaSnip'},     -- Required
 		}
 	},
--- 	{
--- 		"epwalsh/obsidian.nvim",
--- 		lazy = true,
--- 		event = { "BufReadPre /home/eric/zettelkasten-notes/**.md" },
--- 		dependencies = {
--- 			"nvim-lua/plenary.nvim",
--- 		},
--- 		opts = {
--- 			dir = "~/zettelkasten-notes",
--- 		},
--- 	},
 }
 
 require("lazy").setup(plugins, opts)

@@ -34,6 +34,16 @@ local plugins = {
 	{"tpope/vim-unimpaired"},
 	{"tpope/vim-fugitive"},
 	{"tpope/vim-surround"},
+	{
+		'morhetz/gruvbox',
+		config = function()
+			if vim.fn.has('termguicolors') then
+				vim.o.termguicolors = true
+			end
+
+			vim.cmd [[colorscheme gruvbox]]
+		end
+	},
 	{"junegunn/goyo.vim"},
 	{"junegunn/limelight.vim"},
 	{"vim-airline/vim-airline"},

@@ -3,7 +3,7 @@ vim.g.mapleader = " "
 vim.keymap.set('n', '<Leader>VV', ':e /home/eric/dotfiles/nvim/lua/eric/remap.lua<CR>', { noremap = true, silent = false })
 vim.keymap.set('n', '<Leader>VP', ':e /home/eric/dotfiles/nvim/lua/plugins/init.lua<CR>', { noremap = true, silent = false })
 vim.keymap.set('n', '<Leader>d', [[<Cmd>put =strftime('%c')<CR>]])
-vim.keymap.set('n', '<Leader>esc', [[<Cmd>!/usr/bin/setxkbnoremap -option "caps:swapescape"<CR>]])
+vim.keymap.set('n', '<Leader>esc', [[<Cmd>!/usr/bin/setxkbmap -option "caps:swapescape"<CR>]])
 vim.keymap.set('n', '<Leader>s', ":term<CR>")
 vim.keymap.set('n', '<Leader>gs', ":Git<CR>")
 vim.keymap.set('n', '<Leader>q', ":e /home/eric/zettelkasten-notes/Plugins for Neovim.md<CR>")

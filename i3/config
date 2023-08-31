@@ -185,5 +185,4 @@ new_window 1pixel
 
 exec "setxkbmap -layout us" 
 #-option caps:swapescape" 
-exec "xrandr --auto -o left --output HDMI-1 --right-of eDP-1"
 exec "feh --bg-scale /home/eric/wallpaper.jpg"

@@ -1,3 +1,5 @@
+vim.o.termguicolors = true
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	vim.fn.system({
@@ -50,6 +52,7 @@ local plugins = {
 			{'L3MON4D3/LuaSnip'},     -- Required
 		}
 	},
+	{"norcalli/nvim-colorizer.lua"},
 }
 
 require("lazy").setup(plugins, opts)
@@ -85,3 +88,5 @@ lsp.setup()
 -- 	},
 -- }
 require("flutter-tools").setup {}
+
+require("colorizer").setup()

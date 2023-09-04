@@ -31,10 +31,13 @@ local plugins = {
 	},
 	{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
 	{"nvim-treesitter/playground"},
-	{"tpope/vim-unimpaired"},
+   	{"tpope/vim-unimpaired"},
 	{"tpope/vim-fugitive"},
 	{"tpope/vim-surround"},
-	{"nvim-tree/nvim-web-devicons"},
+	{"tpope/vim-sleuth"},
+{"nvim-tree/nvim-web-devicons"},
+	{'ryanoasis/vim-devicons'},
+{"vim-airline/vim-airline"},
 	{
 		'morhetz/gruvbox',
 		config = function()
@@ -47,25 +50,37 @@ local plugins = {
 	},
 	{"junegunn/goyo.vim"},
 	{"junegunn/limelight.vim"},
-	{"nvim-lualine/lualine.nvim",
-dependencies = {{'nvim-tree/nvim-web-devicons'},},
-},
-	{
-		'VonHeikemen/lsp-zero.nvim',
-		branch = 'v2.x',
-		dependencies = {
-			-- LSP Support
-			{'neovim/nvim-lspconfig'},             -- Required
-			{'williamboman/mason.nvim'},           -- Optional
-			{'williamboman/mason-lspconfig.nvim'}, -- Optional
+	{"lewis6991/gitsigns.nvim"},
+{
+	'VonHeikemen/lsp-zero.nvim',
+	branch = 'v2.x',
+	dependencies = {
+		-- LSP Support
+		{'neovim/nvim-lspconfig'},             -- Required
+		{'williamboman/mason.nvim'},           -- Optional
+		{'williamboman/mason-lspconfig.nvim'}, -- Optional
 
-			-- Autocompletion
-			{'hrsh7th/nvim-cmp'},     -- Required
-			{'hrsh7th/cmp-nvim-lsp'}, -- Required
-			{'L3MON4D3/LuaSnip'},     -- Required
-		}
+		-- Autocompletion
+		{'hrsh7th/nvim-cmp'},     -- Required
+		{'hrsh7th/cmp-nvim-lsp'}, -- Required
+		{'L3MON4D3/LuaSnip'},     -- Required
+	}
+},
+{
+	'akinsho/flutter-tools.nvim',
+	lazy = false,
+	dependencies = {
+		'nvim-lua/plenary.nvim',
+		'stevearc/dressing.nvim', -- optional for vim.ui.select
 	},
-	{"norcalli/nvim-colorizer.lua"},
+	config = true,
+},
+{"norcalli/nvim-colorizer.lua"},
+{
+	    'windwp/nvim-autopairs',
+	        event = "InsertEnter",
+		    opts = {} -- this is equalent to setup({}) function
+	    }
 }
 
 require("lazy").setup(plugins, opts)
@@ -90,12 +105,14 @@ require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
 lsp.setup()
 
-require('lualine').setup {
-	options = {
-		theme = 'gruvbox',
-	}
+local dart_lsp = lsp.build_options('dartls', {})
+
+require("flutter-tools").setup {
+  lsp = {
+    capabilities = dart_lsp.capabilities
+  },
 }
 
-require("flutter-tools").setup {}
-
 require("colorizer").setup()
+require("gitsigns").setup()
+

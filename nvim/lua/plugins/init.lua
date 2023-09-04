@@ -31,13 +31,14 @@ local plugins = {
 	},
 	{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
 	{"nvim-treesitter/playground"},
-   	{"tpope/vim-unimpaired"},
+	{"tpope/vim-unimpaired"},
 	{"tpope/vim-fugitive"},
 	{"tpope/vim-surround"},
 	{"tpope/vim-sleuth"},
-{"nvim-tree/nvim-web-devicons"},
+	{"nvim-tree/nvim-web-devicons"},
 	{'ryanoasis/vim-devicons'},
-{"vim-airline/vim-airline"},
+	{"vim-airline/vim-airline"},
+	{"vim-airline/vim-airline-themes"},
 	{
 		'morhetz/gruvbox',
 		config = function()
@@ -51,36 +52,36 @@ local plugins = {
 	{"junegunn/goyo.vim"},
 	{"junegunn/limelight.vim"},
 	{"lewis6991/gitsigns.nvim"},
-{
-	'VonHeikemen/lsp-zero.nvim',
-	branch = 'v2.x',
-	dependencies = {
-		-- LSP Support
-		{'neovim/nvim-lspconfig'},             -- Required
-		{'williamboman/mason.nvim'},           -- Optional
-		{'williamboman/mason-lspconfig.nvim'}, -- Optional
+	{
+		'VonHeikemen/lsp-zero.nvim',
+		branch = 'v2.x',
+		dependencies = {
+			-- LSP Support
+			{'neovim/nvim-lspconfig'},             -- Required
+			{'williamboman/mason.nvim'},           -- Optional
+			{'williamboman/mason-lspconfig.nvim'}, -- Optional
 
-		-- Autocompletion
-		{'hrsh7th/nvim-cmp'},     -- Required
-		{'hrsh7th/cmp-nvim-lsp'}, -- Required
-		{'L3MON4D3/LuaSnip'},     -- Required
-	}
-},
-{
-	'akinsho/flutter-tools.nvim',
-	lazy = false,
-	dependencies = {
-		'nvim-lua/plenary.nvim',
-		'stevearc/dressing.nvim', -- optional for vim.ui.select
+			-- Autocompletion
+			{'hrsh7th/nvim-cmp'},     -- Required
+			{'hrsh7th/cmp-nvim-lsp'}, -- Required
+			{'L3MON4D3/LuaSnip'},     -- Required
+		}
 	},
-	config = true,
-},
-{"norcalli/nvim-colorizer.lua"},
-{
-	    'windwp/nvim-autopairs',
-	        event = "InsertEnter",
-		    opts = {} -- this is equalent to setup({}) function
-	    }
+	{
+		'akinsho/flutter-tools.nvim',
+		lazy = false,
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			'stevearc/dressing.nvim', -- optional for vim.ui.select
+		},
+		config = true,
+	},
+	{"norcalli/nvim-colorizer.lua"},
+	{
+		'windwp/nvim-autopairs',
+		event = "InsertEnter",
+		opts = {} -- this is equalent to setup({}) function
+	}
 }
 
 require("lazy").setup(plugins, opts)
@@ -108,9 +109,9 @@ lsp.setup()
 local dart_lsp = lsp.build_options('dartls', {})
 
 require("flutter-tools").setup {
-  lsp = {
-    capabilities = dart_lsp.capabilities
-  },
+	lsp = {
+		capabilities = dart_lsp.capabilities
+	},
 }
 
 require("colorizer").setup()

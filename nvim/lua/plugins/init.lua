@@ -81,7 +81,8 @@ local plugins = {
 		'windwp/nvim-autopairs',
 		event = "InsertEnter",
 		opts = {} -- this is equalent to setup({}) function
-	}
+	},
+	{"mhartington/formatter.nvim"},
 }
 
 require("lazy").setup(plugins, opts)
@@ -116,4 +117,24 @@ require("flutter-tools").setup {
 
 require("colorizer").setup()
 require("gitsigns").setup()
+
+local util = require("formatter.util")
+
+require("formatter").setup {
+	logging = true,
+	log_level = vim.log.levels.INFO,
+	filetype = {
+		dart = {
+			function ()
+				return {
+				exe = "dart format",
+				args = {
+					"--line-length 120",
+					util.escape_path(util.get_current_buffer_file_path())
+				},
+			}
+			end
+		}
+	},
+}
 

@@ -3,6 +3,7 @@
   "cmp-nvim-lsp": { "branch": "main", "commit": "44b16d11215dce86f253ce0c30949813c0a90765" },
   "dressing.nvim": { "branch": "master", "commit": "c7b035de7f91bb6b62b4308f105c56d1a968b8c5" },
   "flutter-tools.nvim": { "branch": "main", "commit": "561d85b16d8ca2938820a9c26b2fe74096d89c81" },
+  "formatter.nvim": { "branch": "master", "commit": "44c89f09dcc220dc2a9b056e93c3a87c86e79804" },
   "gitsigns.nvim": { "branch": "main", "commit": "d927caa075df63bf301d92f874efb72fd22fd3b4" },
   "goyo.vim": { "branch": "master", "commit": "fa0263d456dd43f5926484d1c4c7022dfcb21ba9" },
   "gruvbox": { "branch": "master", "commit": "f1ecde848f0cdba877acb0c740320568252cc482" },

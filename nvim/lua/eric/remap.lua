@@ -27,3 +27,6 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
 vim.api.nvim_exec([[autocmd! User GoyoEnter Limelight]], false)
 vim.api.nvim_exec([[autocmd! User GoyoLeave Limelight!]], false)
+
+-- vim.api.nvim_exec([[autocmd! BufWritePost *.dart call DartFormatAsync()]], false)
+-- vim.api.nvim_exec([[autocmd! BufWritePost *.dart silent !dart format --line-length=120 %]], false)

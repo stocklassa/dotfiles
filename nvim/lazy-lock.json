@@ -7,6 +7,7 @@
   "gitsigns.nvim": { "branch": "main", "commit": "d927caa075df63bf301d92f874efb72fd22fd3b4" },
   "goyo.vim": { "branch": "master", "commit": "fa0263d456dd43f5926484d1c4c7022dfcb21ba9" },
   "gruvbox": { "branch": "master", "commit": "f1ecde848f0cdba877acb0c740320568252cc482" },
+  "harpoon": { "branch": "master", "commit": "21f4c47c6803d64ddb934a5b314dcb1b8e7365dc" },
   "lazy.nvim": { "branch": "main", "commit": "2a9354c7d2368d78cbd5575a51a2af5bd8a6ad01" },
   "limelight.vim": { "branch": "master", "commit": "86aaec1700b27618d33d6182f44691d84d2cb6e5" },
   "lsp-zero.nvim": { "branch": "v2.x", "commit": "f084f4a6a716f55bf9c4026e73027bb24a0325a3" },

@@ -20,21 +20,13 @@ local plugins = {
 		'nvim-telescope/telescope.nvim',
 		dependencies = { 'nvim-lua/plenary.nvim' }
 	},
-	{
-		'akinsho/flutter-tools.nvim',
-		lazy = false,
-		dependencies = {
-			'nvim-lua/plenary.nvim',
-			'stevearc/dressing.nvim',
-		},
-		config = true,
-	},
 	{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
 	{"nvim-treesitter/playground"},
 	{"tpope/vim-unimpaired"},
 	{"tpope/vim-fugitive"},
 	{"tpope/vim-surround"},
 	{"tpope/vim-sleuth"},
+	{"ThePrimeagen/harpoon"},
 	{"nvim-tree/nvim-web-devicons"},
 	{'ryanoasis/vim-devicons'},
 	{"vim-airline/vim-airline"},
@@ -111,30 +103,12 @@ local dart_lsp = lsp.build_options('dartls', {})
 
 require("flutter-tools").setup {
 	lsp = {
-		capabilities = dart_lsp.capabilities
+		capabilities = dart_lsp.capabilities,
+		settings = {
+			lineLength = 120,
+		},
 	},
 }
 
 require("colorizer").setup()
 require("gitsigns").setup()
-
-local util = require("formatter.util")
-
-require("formatter").setup {
-	logging = true,
-	log_level = vim.log.levels.INFO,
-	filetype = {
-		dart = {
-			function ()
-				return {
-				exe = "dart format",
-				args = {
-					"--line-length 120",
-					util.escape_path(util.get_current_buffer_file_path())
-				},
-			}
-			end
-		}
-	},
-}
-

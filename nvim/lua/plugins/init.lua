@@ -113,19 +113,23 @@ require("flutter-tools").setup {
 require("colorizer").setup()
 require("gitsigns").setup()
 
-require('telescope').setup{}
 local actions = require('telescope.actions')
-local actions_state = require('telescope.actions.state')
+require('telescope').setup{}
 
 function find_files_and_paste()
   require('telescope.builtin').find_files({
-    attach_mappings = function(_, map)
-      map('i', '<CR>', function(prompt_bufnr)
-        local entry = actions_state.get_selected_entry(prompt_bufnr)
+    attach_mappings = function(prompt_bufnr, map)
+      map('i', '<CR>', function()
+        local entry = require('telescope.actions.state').get_selected_entry(prompt_bufnr)
         actions.close(prompt_bufnr)
         if entry then
           local filename = entry.value
-          vim.api.nvim_put({filename}, "c", true, true)
+          local filepath_without_extension = filename:match("(.+)%..+$")
+          if filepath_without_extension then
+            vim.api.nvim_put({"[[" .. filepath_without_extension .. "]]"}, "c", true, true)
+          else
+            vim.api.nvim_put({"[[" .. filename .. "]]"}, "c", true, true)
+          end
         end
       end)
       return true
@@ -133,4 +137,8 @@ function find_files_and_paste()
   })
 end
 
+-- Create a Vim command to call the function
 vim.cmd [[ command! FindFilesAndPaste lua find_files_and_paste() ]]
+
+-- Set up a key mapping in insert mode to call the function when [[ is typed
+vim.api.nvim_set_keymap('i', '[[', '<C-o>:lua vim.schedule(function() find_files_and_paste() end)<CR>', { noremap = true, silent = true })

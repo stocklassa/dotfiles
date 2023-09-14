@@ -148,8 +148,9 @@ function find_backlinks()
   local current_file = vim.fn.expand('%:p:r')  -- Get the current file name without extension
   local project_root = vim.loop.cwd() -- Get the directory where Neovim was initiated
   local relative_path = string.sub(current_file, #project_root + 2)  -- Get the relative path from Neovim's initiation directory
+  local file_name = vim.fn.expand('%:t:r')  -- Get the file name without the extension
   if relative_path then
-    require('telescope.builtin').grep_string({ search = '[[' .. relative_path .. ']]' })
+    require('telescope.builtin').grep_string({ search = '[[' .. relative_path .. ']]|[[' .. file_name .. ']]' })
   else
     print("Could not determine the relative path of the current file.")
   end

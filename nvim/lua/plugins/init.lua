@@ -131,14 +131,26 @@ function find_files_and_paste()
             vim.api.nvim_put({"[[" .. filename .. "]]"}, "c", true, true)
           end
         end
+	vim.fn.feedkeys('a', 'n')
       end)
       return true
     end,
   })
 end
-
 -- Create a Vim command to call the function
 vim.cmd [[ command! FindFilesAndPaste lua find_files_and_paste() ]]
 
 -- Set up a key mapping in insert mode to call the function when [[ is typed
 vim.api.nvim_set_keymap('i', '[[', '<C-o>:lua vim.schedule(function() find_files_and_paste() end)<CR>', { noremap = true, silent = true })
+
+
+function find_backlinks()
+  local current_file = vim.fn.expand('%:p:r')  -- Get the current file name without extension
+  local project_root = vim.loop.cwd() -- Get the directory where Neovim was initiated
+  local relative_path = string.sub(current_file, #project_root + 2)  -- Get the relative path from Neovim's initiation directory
+  if relative_path then
+    require('telescope.builtin').grep_string({ search = '[[' .. relative_path .. ']]' })
+  else
+    print("Could not determine the relative path of the current file.")
+  end
+end

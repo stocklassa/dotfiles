@@ -112,3 +112,25 @@ require("flutter-tools").setup {
 
 require("colorizer").setup()
 require("gitsigns").setup()
+
+require('telescope').setup{}
+local actions = require('telescope.actions')
+local actions_state = require('telescope.actions.state')
+
+function find_files_and_paste()
+  require('telescope.builtin').find_files({
+    attach_mappings = function(_, map)
+      map('i', '<CR>', function(prompt_bufnr)
+        local entry = actions_state.get_selected_entry(prompt_bufnr)
+        actions.close(prompt_bufnr)
+        if entry then
+          local filename = entry.value
+          vim.api.nvim_put({filename}, "c", true, true)
+        end
+      end)
+      return true
+    end,
+  })
+end
+
+vim.cmd [[ command! FindFilesAndPaste lua find_files_and_paste() ]]

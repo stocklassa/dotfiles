@@ -34,3 +34,11 @@ vim.api.nvim_exec([[autocmd! User GoyoLeave Limelight!]], false)
 -- vim.api.nvim_exec([[autocmd! BufWritePost *.dart call DartFormatAsync()]], false)
 -- vim.api.nvim_exec([[autocmd! BufWritePost *.dart silent !dart format --line-length=120 %]], false)
 vim.api.nvim_set_keymap('n', '<Leader>b', ':lua find_backlinks()<CR>', { noremap = true, silent = true })
+
+vim.cmd([[ 
+  autocmd FileType markdown inoremap [[ <C-o>:lua vim.schedule(function() find_files_and_paste() end)<CR>
+]])
+
+vim.api.nvim_set_keymap('n', '<Leader>m', ':lua move_current_file_to_selected_dir()<CR>', { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n', '<Leader><Leader>', ':lua open_oldest_git_file()<CR>', { noremap = true, silent = true })

@@ -140,10 +140,6 @@ end
 -- Create a Vim command to call the function
 vim.cmd [[ command! FindFilesAndPaste lua find_files_and_paste() ]]
 
--- Set up a key mapping in insert mode to call the function when [[ is typed
-vim.api.nvim_set_keymap('i', '[[', '<C-o>:lua vim.schedule(function() find_files_and_paste() end)<CR>', { noremap = true, silent = true })
-
-
 function find_backlinks()
   local current_file = vim.fn.expand('%:p:r')  -- Get the current file name without extension
   local project_root = vim.loop.cwd() -- Get the directory where Neovim was initiated
@@ -155,3 +151,72 @@ function find_backlinks()
     print("Could not determine the relative path of the current file.")
   end
 end
+
+local actions = require('telescope.actions')
+local finders = require('telescope.finders')
+local pickers = require('telescope.pickers')
+local conf = require('telescope.config').values
+
+function move_current_file_to_selected_dir()
+  local current_file = vim.fn.expand('%:p')
+  
+  if current_file == '' then
+    print('No file to move')
+    return
+  end
+
+  local current_dir = vim.fn.expand('%:p:h')
+  local dirs = vim.fn.glob(current_dir .. '/*', 0, 1)
+  local dir_names = {}
+  for _, dir in pairs(dirs) do
+    if vim.loop.fs_stat(dir).type == 'directory' then
+      table.insert(dir_names, vim.fn.fnamemodify(dir, ':t'))
+    end
+  end
+  
+  pickers.new({}, {
+    prompt_title = 'Move file to',
+    finder = finders.new_table {
+      results = dir_names,
+    },
+    sorter = conf.generic_sorter({}),
+    attach_mappings = function(_, map)
+      map('i', '<CR>', function(prompt_bufnr)
+        local selection = require('telescope.actions.state').get_selected_entry(prompt_bufnr)
+        actions.close(prompt_bufnr)
+        local dest_dir = vim.fn.finddir(selection.value, current_dir .. '/*')
+        local dest_path = dest_dir .. '/' .. vim.fn.fnamemodify(current_file, ':t')
+        os.rename(current_file, dest_path)
+        vim.cmd('e ' .. dest_path)
+      end)
+      
+      return true
+    end,
+  }):find()
+end
+
+function open_oldest_git_file()
+  -- Get the root path of the git repository
+  local handle = io.popen('git rev-parse --show-toplevel')
+  local git_root = handle:read("*a"):gsub("%s+$", "")
+  handle:close()
+
+  if #git_root == 0 then
+    print("Not in a git repository.")
+    return
+  end
+
+  -- Get the oldest file from the git log
+  handle = io.popen("git log --diff-filter=A --pretty=format:'' --name-only | grep -E '.*\\.md$' | sort | uniq -u | head -n 1")
+  local oldest_file = handle:read("*a"):gsub("%s+$", "")
+  handle:close()
+
+  -- Open the oldest file in Neovim
+  if #oldest_file > 0 then
+    vim.cmd("e " .. vim.fn.fnameescape(git_root .. "/" .. oldest_file))
+  else
+    print("Could not find the oldest file.")
+  end
+end
+
+vim.api.nvim_set_keymap('n', '<Leader><Leader>', ':lua open_oldest_git_file()<CR>', { noremap = true, silent = true })

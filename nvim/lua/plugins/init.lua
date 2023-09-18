@@ -206,8 +206,8 @@ function open_oldest_git_file()
     return
   end
 
-  -- Get the oldest file from the git log
-  handle = io.popen("git log --diff-filter=A --pretty=format:'' --name-only | grep -E '.*\\.md$' | sort | uniq -u | head -n 1")
+  -- Get a random oldest file from the git log
+  handle = io.popen("git log --diff-filter=A --pretty=format:'' --name-only | grep -E '.*\\.md$' | grep -v '^Sources/' | sort | uniq -u | shuf | head -n 1")
   local oldest_file = handle:read("*a"):gsub("%s+$", "")
   handle:close()
 
@@ -218,5 +218,4 @@ function open_oldest_git_file()
     print("Could not find the oldest file.")
   end
 end
-
 vim.api.nvim_set_keymap('n', '<Leader><Leader>', ':lua open_oldest_git_file()<CR>', { noremap = true, silent = true })

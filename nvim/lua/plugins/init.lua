@@ -113,6 +113,8 @@ require("flutter-tools").setup {
 require("colorizer").setup()
 require("gitsigns").setup()
 
+
+--- BEGIN LINK CREATOR
 local actions = require('telescope.actions')
 require('telescope').setup{}
 
@@ -139,7 +141,10 @@ function find_files_and_paste()
 end
 -- Create a Vim command to call the function
 vim.cmd [[ command! FindFilesAndPaste lua find_files_and_paste() ]]
+--- END LINK CREATOR
 
+
+--- BEGIN FIND BACKLINKS
 function find_backlinks()
   local current_file = vim.fn.expand('%:p:r')  -- Get the current file name without extension
   local project_root = vim.loop.cwd() -- Get the directory where Neovim was initiated
@@ -151,7 +156,11 @@ function find_backlinks()
     print("Could not determine the relative path of the current file.")
   end
 end
+--- END FIND BACKLINKS
 
+
+
+--- BEGIN MOVE FILE
 local actions = require('telescope.actions')
 local finders = require('telescope.finders')
 local pickers = require('telescope.pickers')
@@ -194,7 +203,11 @@ function move_current_file_to_selected_dir()
     end,
   }):find()
 end
+--- END MOVE FILE
 
+
+
+-- BEGIN OPEN OLDEST FILE
 function open_oldest_git_file()
   -- Get the root path of the git repository
   local handle = io.popen('git rev-parse --show-toplevel')
@@ -219,3 +232,4 @@ function open_oldest_git_file()
   end
 end
 vim.api.nvim_set_keymap('n', '<Leader><Leader>', ':lua open_oldest_git_file()<CR>', { noremap = true, silent = true })
+-- END OPEN OLDEST FILE

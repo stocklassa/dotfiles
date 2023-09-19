@@ -113,35 +113,69 @@ require("flutter-tools").setup {
 require("colorizer").setup()
 require("gitsigns").setup()
 
-
---- BEGIN LINK CREATOR
 local actions = require('telescope.actions')
-require('telescope').setup{}
+local action_state = require('telescope.actions.state')
 
-function find_files_and_paste()
-  require('telescope.builtin').find_files({
-    attach_mappings = function(prompt_bufnr, map)
-      map('i', '<CR>', function()
-        local entry = require('telescope.actions.state').get_selected_entry(prompt_bufnr)
-        actions.close(prompt_bufnr)
-        if entry then
-          local filename = entry.value
-          local filepath_without_extension = filename:match("(.+)%..+$")
-          if filepath_without_extension then
-            vim.api.nvim_put({"[[" .. filepath_without_extension .. "]]"}, "c", true, true)
-          else
-            vim.api.nvim_put({"[[" .. filename .. "]]"}, "c", true, true)
-          end
+local function create_and_insert_file(file_path)
+    -- Create a new file at the specified path
+    vim.fn.system("touch " .. file_path)
+
+    -- Insert the link into the buffer
+    local file_dir, file_name = file_path:match("(.+/)(.+)%..+")
+    local link = string.format("[[%s/%s]]", file_dir, file_name)
+    vim.api.nvim_put({ link }, "c", true, true)
+end
+
+
+_G.find_files_and_paste = function()
+  local git_root = vim.fn.systemlist('git rev-parse --show-toplevel')[1]
+
+  require'telescope.builtin'.find_files {
+    prompt_title = "< Vim >",
+    cwd = git_root,
+    attach_mappings = function(_, map)
+      map('i', '<CR>', function(prompt_bufnr)
+        local entry = require"telescope.actions.state".get_selected_entry(prompt_bufnr)
+        require"telescope.actions".close(prompt_bufnr)
+        local filename = entry.value
+        if filename then
+          local relative_path = filename:match( "^" .. git_root .. "/(.+)$" ) or filename
+          relative_path = relative_path:match("(.+)%..+") or relative_path
+          vim.api.nvim_put({'[['..relative_path..']]'}, 'c', true, true)
+          vim.api.nvim_feedkeys('a', 'n', true)
         end
-	vim.fn.feedkeys('a', 'n')
       end)
+
+
+map('i', '<C-x>', function(prompt_bufnr)
+  local current_input = require'telescope.actions.state'.get_current_line(prompt_bufnr)
+  require"telescope.actions".close(prompt_bufnr)
+  if current_input then
+    local file_path = git_root .. '/' .. current_input .. '.md'
+    local file = io.open(file_path, "w")
+    if file then
+      file:close()
+    else
+      print("Could not create file at: " .. file_path)
+    end
+    local relative_path = current_input:match("(.+)%..+") or current_input
+    vim.api.nvim_put({'[['..relative_path..']]'}, 'c', true, true)
+    vim.api.nvim_feedkeys('a', 'n', true)
+  end
+end)
+
       return true
     end,
-  })
+  }
 end
--- Create a Vim command to call the function
-vim.cmd [[ command! FindFilesAndPaste lua find_files_and_paste() ]]
---- END LINK CREATOR
+
+-- Your autocmd group to set up the mapping
+vim.api.nvim_exec([[
+  augroup FindFilesAndPaste
+    autocmd!
+    autocmd FileType markdown inoremap <buffer> [[ <esc>:lua find_files_and_paste()<cr>
+  augroup END
+]], false)
 
 
 --- BEGIN FIND BACKLINKS

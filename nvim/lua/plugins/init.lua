@@ -26,6 +26,7 @@ local plugins = {
 	{"tpope/vim-fugitive"},
 	{"tpope/vim-surround"},
 	{"tpope/vim-sleuth"},
+	{"tpope/vim-eunuch"},
 	{"ThePrimeagen/harpoon"},
 	{"nvim-tree/nvim-web-devicons"},
 	{'ryanoasis/vim-devicons'},

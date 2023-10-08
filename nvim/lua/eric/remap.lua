@@ -38,3 +38,10 @@ vim.api.nvim_set_keymap('n', '<Leader>b', ':lua find_backlinks()<CR>', { noremap
 vim.api.nvim_set_keymap('n', '<Leader>m', ':lua move_current_file_to_selected_dir()<CR>', { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap('n', '<Leader><Leader>', ':lua open_oldest_git_file()<CR>', { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n', '<Leader>a', ':lua require("harpoon.mark").add_file()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>h', ':lua require("harpoon.ui").toggle_quick_menu()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>1', ':lua require("harpoon.ui").nav_file(1)<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>2', ':lua require("harpoon.ui").nav_file(2)<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>3', ':lua require("harpoon.ui").nav_file(3)<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>4', ':lua require("harpoon.ui").nav_file(4)<CR>', { noremap = true, silent = true })

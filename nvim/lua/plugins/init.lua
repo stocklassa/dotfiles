@@ -27,6 +27,7 @@ local plugins = {
 	{"tpope/vim-surround"},
 	{"tpope/vim-sleuth"},
 	{"tpope/vim-eunuch"},
+	{"github/copilot.vim"},
 	{"ThePrimeagen/harpoon"},
 	{"nvim-tree/nvim-web-devicons"},
 	{'ryanoasis/vim-devicons'},
@@ -69,7 +70,6 @@ local plugins = {
 		},
 		config = true,
 	},
-	{"norcalli/nvim-colorizer.lua"},
 	{
 		'windwp/nvim-autopairs',
 		event = "InsertEnter",

@@ -35,7 +35,13 @@ background = "0x2d4f67"
 foreground = "0xc8c093"
 
 [font]
-size = 7
+size = 12
 
 [font.normal]
-family = "JetBrainsMono NF"
+family = "FiraCode Nerd Font"
+style = "Regular"
+
+[keyboard]
+bindings = [
+{ key = "F11", action = "ToggleFullScreen" },
+]

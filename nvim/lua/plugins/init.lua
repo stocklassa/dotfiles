@@ -62,15 +62,6 @@ local plugins = {
 		}
 	},
 	{
-		'akinsho/flutter-tools.nvim',
-		lazy = false,
-		dependencies = {
-			'nvim-lua/plenary.nvim',
-			'stevearc/dressing.nvim', -- optional for vim.ui.select
-		},
-		config = true,
-	},
-	{
 		'windwp/nvim-autopairs',
 		event = "InsertEnter",
 		opts = {} -- this is equalent to setup({}) function
@@ -81,7 +72,7 @@ local plugins = {
 require("lazy").setup(plugins, opts)
 
 require'nvim-treesitter.configs'.setup {
-	ensure_installed = { "markdown", "json", "dart", "python", "lua", "ruby", "bash" },
+	ensure_installed = { "markdown", "json", "python", "lua", "ruby", "bash" },
 	highlight = {
 		enable = true
 	}
@@ -100,18 +91,6 @@ require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
 lsp.setup()
 
-local dart_lsp = lsp.build_options('dartls', {})
-
-require("flutter-tools").setup {
-	lsp = {
-		capabilities = dart_lsp.capabilities,
-		settings = {
-			lineLength = 120,
-		},
-	},
-}
-
-require("colorizer").setup()
 require("gitsigns").setup()
 
 local actions = require('telescope.actions')

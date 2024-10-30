@@ -1,0 +1,19 @@
+name: dev
+root: ~/zettelkasten-notes
+
+windows:
+  - zettelkasten:
+      root: ~/zettelkasten-notes
+      layout: even-horizontal
+      panes:
+        - nvim
+  - repo:
+      root: ~/mueller/aiki-labeltranslator
+      layout: even-horizontal
+      panes:
+        - nvim
+  - bash:
+      root: ~/mueller/aiki-labeltranslator
+      layout: even-horizontal
+      panes:
+        - git status

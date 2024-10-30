@@ -1,0 +1,10 @@
+# Interface Settings
+set pager_index_lines = 5
+set index_format = "%4C %Z %d %-20.20F %s"
+set sort = 'reverse-date'
+set sort_aux = 'last-date-received'
+
+# Display settings
+set editor = "nvim"
+set visual = "nvim"
+set charset = "utf-8"

@@ -1,0 +1,19 @@
+source ~/.config/.neomutt-secrets
+
+# Account settings
+set imap_user = "eric.stocklassa@mayflower.de"
+set from = "eric.stocklassa@mayflower.de"
+set smtp_url = "smtp://eric.stocklassa@mayflower.de@smtp.mayflower.de:587/"
+set imap_authenticators = "login"
+set smtp_authenticators = "login"
+set ssl_starttls = yes
+set ssl_force_tls = yes
+
+# Mailboxes
+set folder = "imaps://imap.mayflower.de/"
+set spoolfile = "+INBOX"
+set postponed = "+Drafts"
+set record = "+Sent"
+
+set debug_level = 2
+set debug_file = "~/neomutt-debug.log"
